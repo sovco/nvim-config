@@ -26,11 +26,15 @@ Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'numToStr/Comment.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
+" Plug 'hrsh7th/cmp-nvim-lsp'
+" Plug 'hrsh7th/cmp-buffer'
+" Plug 'hrsh7th/cmp-path'
+" Plug 'hrsh7th/cmp-cmdline'
+" Plug 'hrsh7th/nvim-cmp'
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 call plug#end()
 
 set title
@@ -154,6 +158,14 @@ if &diff
     highlight! link DiffText MatchParen
 endif
 
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
 " Function for toggling the bottom statusbar:
 let s:hidden_all = 0
 function! ToggleHiddenAll()
@@ -182,4 +194,6 @@ silent! source ~/.config/nvim/shortcuts.vim
 source ~/.config/nvim/plug-configs/glow.vim
 source ~/.config/nvim/plug-configs/venn.vim
 source ~/.config/nvim/plug-configs/Comment.vim
-source ~/.config/nvim/plug-configs/cmp.vim
+"source ~/.config/nvim/plug-configs/cmp.vim
+source ~/.config/nvim/plug-configs/lsp-config.vim
+source ~/.config/nvim/plug-configs/toggleterm.vim
