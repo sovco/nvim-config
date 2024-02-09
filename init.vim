@@ -26,15 +26,12 @@ Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'numToStr/Comment.nvim'
 Plug 'neovim/nvim-lspconfig'
-" Plug 'hrsh7th/cmp-nvim-lsp'
-" Plug 'hrsh7th/cmp-buffer'
-" Plug 'hrsh7th/cmp-path'
-" Plug 'hrsh7th/cmp-cmdline'
-" Plug 'hrsh7th/nvim-cmp'
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+Plug 'easymotion/vim-easymotion'
+Plug 'gennaro-tedesco/nvim-peekup'
 call plug#end()
 
 set title
@@ -111,6 +108,9 @@ set noshowcmd
 " Replace all is aliased to S.
 	nnoremap S :%s//g<Left><Left>
 
+" In normal mode tab goes to next tab
+	nnoremap <silent><TAB> gt
+
 " Compile document, be it groff/LaTeX/markdown/etc.
 	map <leader>c :w! \| !compiler "%:p"<CR>
 
@@ -144,6 +144,12 @@ set noshowcmd
   	autocmd BufWritePre *.[ch] %s/\%$/\r/e " add trailing newline for ANSI C standard
   	autocmd BufWritePre *neomutt* %s/^--$/-- /e " dash-dash-space signature delimiter in emails
   	autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
+
+" Runs clang-format
+  	autocmd BufWritePost *.h,*.hpp,*.c,*.cpp !clang-format -i --style='file' "%:p"
+
+  	autocmd VimEnter * :TSEnable highlight indent incremental_selection
+  	autocmd VimEnter * :COQnow --shut-up
 
 " When shortcut files are updated, renew bash and ranger configs with new material:
 	autocmd BufWritePost bm-files,bm-dirs !shortcuts
@@ -194,6 +200,6 @@ silent! source ~/.config/nvim/shortcuts.vim
 source ~/.config/nvim/plug-configs/glow.vim
 source ~/.config/nvim/plug-configs/venn.vim
 source ~/.config/nvim/plug-configs/Comment.vim
-"source ~/.config/nvim/plug-configs/cmp.vim
 source ~/.config/nvim/plug-configs/lsp-config.vim
 source ~/.config/nvim/plug-configs/toggleterm.vim
+source ~/.config/nvim/plug-configs/easymotion.vim
