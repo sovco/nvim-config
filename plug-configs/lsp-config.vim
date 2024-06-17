@@ -2,6 +2,11 @@ lua << EOF
 -- Setup language servers.
 local lspconfig = require('lspconfig')
 lspconfig.clangd.setup{}
+lspconfig.quick_lint_js.setup{
+    cmd = { "quick-lint-js", "--lsp-server"},
+    filetypes = { "javascript", "typescript" },
+    single_file_suppoer = true
+}
 lspconfig.lua_ls.setup {
   on_init = function(client)
     local path = client.workspace_folders[1].name

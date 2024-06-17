@@ -31,7 +31,7 @@ Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 Plug 'easymotion/vim-easymotion'
-Plug 'gennaro-tedesco/nvim-peekup'
+Plug 'sainnhe/everforest'
 call plug#end()
 
 set title
@@ -148,6 +148,12 @@ set noshowcmd
 " Runs clang-format
   	autocmd BufWritePost *.h,*.hpp,*.c,*.cpp !clang-format -i --style='file' "%:p"
 
+" Runs js format
+    autocmd BufWritePost *.js !js-beautify -r --type 'js' "%:p"
+
+" Runs cmake format
+    " autocmd BufWritePost *.cmake,*.txt !cmake-format -i --line-width 120 --tab-size 4 --max-subgroups-hwrap 5 infilepath "%:p"
+
   	autocmd VimEnter * :TSEnable highlight indent incremental_selection
   	autocmd VimEnter * :COQnow --shut-up
 
@@ -196,10 +202,19 @@ nnoremap <leader>h :call ToggleHiddenAll()<CR>
 " if typed fast without the timeout.
 silent! source ~/.config/nvim/shortcuts.vim
 
-
 source ~/.config/nvim/plug-configs/glow.vim
 source ~/.config/nvim/plug-configs/venn.vim
 source ~/.config/nvim/plug-configs/Comment.vim
 source ~/.config/nvim/plug-configs/lsp-config.vim
 source ~/.config/nvim/plug-configs/toggleterm.vim
 source ~/.config/nvim/plug-configs/easymotion.vim
+
+" Important!!
+if has('termguicolors')
+    set termguicolors
+endif
+set background=dark
+" set background=light
+let g:everforest_background = 'hard'
+let g:everforest_better_performance = 1
+colorscheme everforest
