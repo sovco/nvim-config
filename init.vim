@@ -7,11 +7,11 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 	autocmd VimEnter * PlugInstall
 endif
 
-map ,, :keepp /<++><CR>ca<
+map ,, :keepp /<++><CR>ca<о
 imap ,, <esc>:keepp /<++><CR>ca<
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'jreybert/vimagit'
@@ -110,6 +110,7 @@ set noshowcmd
 
 " In normal mode tab goes to next tab
 	nnoremap <silent><TAB> gt
+	nnoremap <silent><S-TAB> gT
 
 " Compile document, be it groff/LaTeX/markdown/etc.
 	map <leader>c :w! \| !compiler "%:p"<CR>
@@ -145,7 +146,7 @@ set noshowcmd
   	autocmd BufWritePre *neomutt* %s/^--$/-- /e " dash-dash-space signature delimiter in emails
   	autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 
-" Runs clang-format
+" " Runs clang-format
   	autocmd BufWritePost *.h,*.hpp,*.c,*.cpp !clang-format -i --style='file' "%:p"
 
 " Runs js format
@@ -177,6 +178,7 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+set hlsearch
 
 " Function for toggling the bottom statusbar:
 let s:hidden_all = 0
@@ -209,7 +211,7 @@ source ~/.config/nvim/plug-configs/lsp-config.vim
 source ~/.config/nvim/plug-configs/toggleterm.vim
 source ~/.config/nvim/plug-configs/easymotion.vim
 
-" Important!!
+" " Important!!
 if has('termguicolors')
     set termguicolors
 endif
